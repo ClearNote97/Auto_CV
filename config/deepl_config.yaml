@@ -20,6 +20,8 @@ translation:
     - github
     - enlace # URLs de publicaciones
     - web
+    - organizacion # org. de las referencias (nombre propio)
+    - contacto # correo/teléfono de las referencias
   # Glosario de override exacto (string completo → traducción forzada).
   glossary:
     "Actualidad": "Present"

@@ -1,6 +1,7 @@
 \documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
 \geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm,head=14pt,headsep=10pt,footskip=24pt}
 \usepackage{paracol}
+\usepackage{needspace} % evita títulos huérfanos al final de página (ver Referencias)
 
 % Configuración de fuentes
 \iftutex
@@ -255,5 +256,45 @@ Revista: ((( pub.revista )))
 \cvevent{ ((( cert.nombre ))) }{ ((( cert.institucion ))) }{ ((( cert.fecha_inicio ))) -- ((( cert.fecha_fin ))) }{}
 ((* if not loop.last *))\divider((* endif *))
 ((* endfor *))
+
+\medskip
+
+% === REFERENCIAS (Profesionales | Personales) ===
+((* if referencias is defined and (referencias.profesionales or referencias.personales) *))
+\needspace{12\baselineskip}% reserva para el título + la banda; si no caben, saltan juntos
+\cvsection{ ((( labels.referencias ))) }
+\columnratio{0.5}
+\begin{paracol}{2}
+\vspace*{0pt}
+
+% --- Profesionales ---
+((* if referencias.profesionales *))
+\cvsubsection{ ((( labels.ref_profesionales ))) }
+((* for r in referencias.profesionales *))
+\textbf{((( r.nombre )))}\\
+((( r.cargo )))((* if r.organizacion *)) · ((( r.organizacion )))((* endif *))\\
+{\small ((( r.contacto )))}
+
+\smallskip
+((* endfor *))
+((* endif *))
+
+\switchcolumn
+\vspace*{0pt}
+
+% --- Personales ---
+((* if referencias.personales *))
+\cvsubsection{ ((( labels.ref_personales ))) }
+((* for r in referencias.personales *))
+\textbf{((( r.nombre )))}\\
+((( r.relacion )))\\
+{\small ((( r.contacto )))}
+
+\smallskip
+((* endfor *))
+((* endif *))
+
+\end{paracol}
+((* endif *))
 
 \end{document}

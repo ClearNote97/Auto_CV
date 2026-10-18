@@ -1,0 +1,12 @@
+# Referencias — reemplaza los placeholders por tus referencias reales.
+# Dos listas: profesionales / personales. Cada persona:
+#   nombre, cargo|relacion, organizacion (opcional), contacto.
+profesionales:
+  - nombre: "Nombre Apellido"
+    cargo: "Cargo"
+    organizacion: "Organización"
+    contacto: "correo@ejemplo.com · +57 300 000 0000"
+personales:
+  - nombre: "Nombre Apellido"
+    relacion: "Relación (ej. colega, mentor)"
+    contacto: "correo@ejemplo.com · +57 300 000 0000"
