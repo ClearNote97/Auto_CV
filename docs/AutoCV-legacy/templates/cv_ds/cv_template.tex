@@ -1,0 +1,140 @@
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+\usepackage{paracol}
+
+% Configuración de fuentes
+\iftutex
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% Colores
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{DarkPastelRed}{HTML}{450808}
+\definecolor{PastelRed}{HTML}{8F0D0D}
+\definecolor{GoldenEarth}{HTML}{E7D192}
+\colorlet{name}{black}
+\colorlet{tagline}{PastelRed}
+\colorlet{heading}{DarkPastelRed}
+\colorlet{headingrule}{GoldenEarth}
+\colorlet{subheading}{PastelRed}
+\colorlet{accent}{PastelRed}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Estilos de fuente
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\footnotesize}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+\renewcommand{\cvItemMarker}{{\small\textbullet}}
+\renewcommand{\cvRatingMarker}{\faCircle}
+
+% Configuración para publicaciones
+\input{pubs-num.cfg}
+
+\begin{document}
+
+% === INFORMACIÓN PERSONAL ===
+\name{ ((( personales.nombre ))) }
+\tagline{ ((( personales.titulo ))) }
+
+\personalinfo{
+  \email{ ((( personales.correo ))) }
+  \phone{ ((( personales.telefono ))) }
+  ((* if personales.linkedin *))\linkedin{ ((( personales.linkedin ))) }((* endif *))
+  ((* if personales.github *))\github{ ((( personales.github ))) }((* endif *))
+}
+
+\makecvheader
+
+% === RESUMEN PROFESIONAL ===
+((* if personales.resumen *))
+\cvsection{Resumen Profesional}
+((( personales.resumen )))
+\medskip
+((* endif *))
+
+\columnratio{0.6}
+\begin{paracol}{2}
+
+% === EXPERIENCIA LABORAL ===
+\cvsection{Experiencia Laboral}
+((* for exp in experiencia *))
+\cvevent{ ((( exp.puesto ))) }{ ((( exp.empresa ))) }{ ((( exp.fecha_inicio ))) -- ((( exp.fecha_fin ))) }{ ((( exp.ubicacion ))) }
+((* if exp.descripcion and exp.descripcion|length > 0 *))
+\begin{itemize}
+  ((* for desc in exp.descripcion *))
+  \item ((( desc )))
+  ((* endfor *))
+\end{itemize}
+((* endif *))
+((* if not loop.last *))\divider((* endif *))
+((* endfor *))
+
+\medskip
+
+% === EDUCACIÓN ===
+\cvsection{Educación}
+((* for edu in educacion *))
+\cvevent{ ((( edu.grado ))) }{ ((( edu.institucion ))) }{ ((( edu.fecha_inicio ))) -- ((( edu.fecha_fin ))) }{ ((( edu.ubicacion ))) }
+((* if edu.trabajo_grado and edu.trabajo_grado != "Pendiente." *))
+Trabajo de grado: ((( edu.trabajo_grado )))
+((* endif *))
+((* if not loop.last *))\divider((* endif *))
+((* endfor *))
+
+\medskip
+
+% === PUBLICACIONES ===
+\cvsection{Publicaciones}
+((* for pub in publicaciones *))
+\cvevent{ ((( pub.titulo ))) }{ ((( pub.autores ))) }{ ((( pub.año ))) }{ ((( pub.tipo ))) }
+Revista: ((( pub.revista )))
+((* if pub.enlace *))
+\href{ ((( pub.enlace ))) }{Ver publicación}
+((* endif *))
+((* if not loop.last *))\divider((* endif *))
+((* endfor *))
+
+% === CERTIFICACIONES ===
+\cvsection{Certificaciones}
+((* for cert in certificaciones *))
+\cvevent{ ((( cert.nombre ))) }{ ((( cert.institucion ))) }{ ((( cert.fecha_inicio ))) -- ((( cert.fecha_fin ))) }{}
+((* if not loop.last *))\divider((* endif *))
+((* endfor *))
+
+\switchcolumn
+
+% === APTITUDES TÉCNICAS ===
+\cvsection{Aptitudes Técnicas}
+((* for apt in aptitudes *))
+\cvtag{ ((( apt ))) }
+((* endfor *))
+
+\medskip
+
+% === IDIOMAS ===
+\cvsection{Idiomas}
+((* for idioma in otros.idiomas *))
+\cvtag{ ((( idioma.idioma ))) - ((( idioma.nivel_lectura ))) }
+((* if not loop.last *))\divider((* endif *))
+((* endfor *))
+
+\medskip
+
+% === INTERESES ===
+\cvsection{Intereses}
+((* for interes in otros.intereses *))
+\cvtag{ ((( interes ))) }
+((* endfor *))
+
+\end{paracol}
+
+\end{document}

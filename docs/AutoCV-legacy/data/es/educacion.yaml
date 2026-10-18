@@ -1,0 +1,43 @@
+# Educación en español
+# Base de datos de educación
+# educacion:
+#   - grado: ""
+#     institucion: ""
+#     ubicacion: ""
+#     fecha_inicio: ""
+#     fecha_fin: ""
+#     trabajo_grado: >
+#       .
+
+educacion:
+  - grado: "Especialista en Alta Gerencia"
+    institucion: "Fundación Universitaria Internacional de la Rioja"
+    ubicacion: "Virtual"
+    fecha_inicio: "2025-08"
+    fecha_fin: "Actualidad"
+    trabajo_grado: >
+      - "Pendiente."
+
+  - grado: "Magister en Economía (Modalidad Investigativa)"
+    institucion: "Fundación Universidad del Norte"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2018-01"
+    fecha_fin: "2021-02"
+    trabajo_grado: >
+      "Eficiencia de la Justicia Penal Colombiana: Un Análisis para los Juzgados Municipales y del Cir-cuito (2012 – 2016)."
+
+  - grado: "Economista"
+    institucion: "Fundación Universidad del Norte"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2014-07"
+    fecha_fin: "2018-09"
+    trabajo_grado: >
+      - "Limitaciones del Sistema Judicial Colombiano: Una Mirada Neo-Institucional. Análisis 2010 - 2016.""
+
+  - grado: "Bachiller Académico"
+    institucion: "Scuola Italiana Galileo Galilei"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2008-08"
+    fecha_fin: "2014-06"
+    # trabajo_grado: >
+    #   - "."

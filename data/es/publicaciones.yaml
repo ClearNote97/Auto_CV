@@ -1,0 +1,23 @@
+# Publicaciones en español
+# Base de datos de publicaciones
+# publicaciones:
+#   - titulo: ""
+#     autores: ""
+#     revista: ""
+#     año: ""
+#     enlace: ""
+
+publicaciones:
+  - titulo: "Evaluating the Efficiency and Productivity of Colombian Criminal Justice"
+    autores: "Nicolás Valencia, Camilo Almanza"
+    tipo: "Artículo de Investigación"
+    revista: "Review of Law and Economics"
+    año: "2022"
+    enlace: "https://doi.org/10.1515/rle-2021-0082"
+
+  - titulo: "Regla 6 por 5 en Europa: Consecuencias en el mercado de futbolistas colombianos"
+    autores: "Néstor Díaz, Nicolás Valencia"
+    tipo: "Artículo de Investigación"
+    revista: "Revista Ágora Económica"
+    año: "2015"
+    enlace: "https://www.uninorte.edu.co/web/economia/agora"

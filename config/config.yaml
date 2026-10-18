@@ -1,0 +1,72 @@
+# Configuración general de AutoCV — única realidad de configuración (criterio CA5).
+project:
+  name: "AutoCV"
+  version: "1.0.0"
+  author: "Nicolás Valencia Santiago"
+  description: "Generador automático y modular de CV en español e inglés usando Python, LaTeX y DeepL."
+  repo_url: "https://github.com/ClearNote97/Auto_CV" # link del footer "¿Cómo hice este documento?"
+
+languages:
+  source: "es" # Idioma fuente (verdad). El inglés se DERIVA de aquí.
+  target: "en" # Idioma de destino de la traducción.
+
+paths:
+  data_dir: "data" # Datos YAML: data/es (fuente) y data/en (derivado)
+  templates_dir: "src/frontend/templates" # Plantillas LaTeX (capa de presentación)
+  output_dir: "output" # Salida generada (PDF, TEX, intermedios)
+  config_dir: "config" # Carpeta de configuración
+
+latex:
+  # Motor: latexmk orquesta biber solo → las publicaciones resuelven (CA4).
+  # (El legacy usaba pdflatex ×2 sin biber; se implementa en la Tarea 5.)
+  engine: "latexmk"
+  options:
+    - "-pdf" # latexmk: compila a PDF con pdflatex
+    - "-interaction=nonstopmode"
+    - "-halt-on-error"
+  template: "cv_ds" # Subcarpeta de la plantilla elegida (contiene cv_template.tex)
+  main_template: "cv_template.tex" # Archivo Jinja→LaTeX principal
+  # NOTA: se eliminó `style_file: estilos/cv_styles.sty` — no existía; altacv usa su .cls.
+  # (La config de traducción —incl. no_translate_keys y glossary— vive en deepl_config.yaml.)
+
+output:
+  # El PDF se nombra  CV_{nombre}{sufijo}.pdf
+  #   {nombre} se deriva de personales.nombre (sin títulos tipo "MSc.").
+  #   {sufijo} depende del idioma (abajo). ES sin sufijo, EN con "_eng".
+  lang_suffix:
+    es: "" # español → CV_Nombre_Apellidos.pdf
+    en: "_eng" # inglés  → CV_Nombre_Apellidos_eng.pdf
+  filename_base: "" # Override opcional: si lo defines, se usa tal cual en vez de derivarlo del nombre.
+  date_format: "%Y-%m-%d"
+
+# Etiquetas de la plantilla por idioma (títulos de sección y textos fijos).
+# NO se traducen con DeepL: se eligen según el idioma del build. Edítalas aquí.
+labels:
+  es:
+    resumen: "Resumen Profesional"
+    aptitudes: "Aptitudes Técnicas"
+    idiomas: "Idiomas"
+    intereses: "Intereses"
+    experiencia: "Experiencia Laboral"
+    educacion: "Educación"
+    publicaciones: "Publicaciones"
+    certificaciones: "Certificaciones"
+    ver_pub: "Ver publicación"
+    trabajo_grado: "Trabajo de grado"
+    como_hice: "¿Cómo hice este documento?"
+  en:
+    resumen: "Professional Summary"
+    aptitudes: "Technical Skills"
+    idiomas: "Languages"
+    intereses: "Interests"
+    experiencia: "Work Experience"
+    educacion: "Education"
+    publicaciones: "Publications"
+    certificaciones: "Certifications"
+    ver_pub: "View publication"
+    trabajo_grado: "Thesis"
+    como_hice: "How I built this CV"
+
+logging:
+  level: "INFO" # DEBUG, INFO, WARNING, ERROR
+  log_to_file: false

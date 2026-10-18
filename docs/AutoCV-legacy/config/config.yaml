@@ -1,0 +1,33 @@
+# Configuración general del proyecto AutoCV
+# TODO: Definir configuración
+project:
+  name: "AutoCV"
+  version: "1.0.0"
+  author: "Nicolás Valencia Santiago"
+  description: "Generador automático y modular de CV en español e inglés usando Python, LaTeX y DeepL."
+
+languages:
+  source: "es" # Idioma fuente principal del CV (español)
+  target: "en" # Idioma de destino para la traducción (inglés)
+
+paths:
+  data_dir: "data" # Carpeta raíz donde están los datos YAML
+  templates_dir: "templates" # Carpeta donde están las plantillas LaTeX
+  output_dir: "output" # Carpeta donde se guardan los archivos generados (PDF, TEX)
+  config_dir: "config" # Carpeta de configuración
+
+latex:
+  engine: "pdflatex" # Motor de compilación LaTeX (puedes usar xelatex si lo prefieres)
+  options: # Opciones adicionales para la compilación
+    - "-interaction=nonstopmode"
+    - "-halt-on-error"
+  main_template: "cv_template.tex" # Nombre del archivo principal de plantilla LaTeX
+  style_file: "estilos/cv_styles.sty" # Archivo de estilos personalizado
+
+output:
+  filename_format: "CV_{nombre}_{idioma}.pdf" # Formato del nombre de archivo de salida
+  date_format: "%Y-%m-%d" # Formato de fecha para incluir en el CV si lo deseas
+
+logging:
+  level: "INFO" # Nivel de logging: DEBUG, INFO, WARNING, ERROR
+  log_to_file: false # Si quieres guardar logs en un archivo

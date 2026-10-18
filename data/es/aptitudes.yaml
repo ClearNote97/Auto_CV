@@ -1,0 +1,25 @@
+# Aptitudes y habilidades en español
+# Estructura: lista de grupos { categoria, skills }. "categoria" es un VALOR
+# (se traduce con DeepL); "categoria"/"skills" son claves estructurales (no se tocan).
+aptitudes:
+  - categoria: "Datos, analítica y decisión"
+    skills:
+      - "Python (pandas, NumPy, scikit-learn)"
+      - "SQL avanzado (PostgreSQL, SQL Server, MySQL, Db2)"
+      - "Visualización y BI (Power BI, Cognos, Bokeh)"
+      - "Gobernanza y acceso de datos"
+      - "Diseño de sistemas de decisión"
+      - "Docker, Git y Dev Containers (SDD)"
+      - "Excel avanzado"
+  - categoria: "Diseño, procesos y riesgo"
+    skills:
+      - "Diseño de procesos"
+      - "Diseño organizacional e institucional"
+      - "Gestión de riesgos (salud, jurídico, contingente)"
+      - "Investigación aplicada (cuantitativa y cualitativa)"
+      - "Análisis de eficiencia (DEA) y econometría"
+  - categoria: "Cómo trabajo"
+    skills:
+      - "Pensamiento sistémico"
+      - "Formación de equipos con criterio propio"
+      - "Traducción de lo técnico a lo estratégico"

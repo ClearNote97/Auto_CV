@@ -1,0 +1,92 @@
+# Experiencia laboral en español
+# # Base de datos de experiencias laborales
+# experiencia:
+#   - puesto: ""
+#     empresa: ""
+#     ubicacion: ""
+#     fecha_inicio: ""
+#     fecha_fin: ""
+#     descripcion: >
+#       .
+
+experiencia:
+  - puesto: "Analista de Datos en Salud"
+    empresa: "Fundación SerSocial IPS"
+    ubicacion: "Cartagena de Indias, Bolívar"
+    fecha_inicio: "2023-06"
+    fecha_fin: "Actualidad"   # concurrente con Nefrólogos
+    descripcion:
+      - "Formalicé el acceso legal a los datos de nuestros aliados estratégicos —antes sin un marco claro—, lo que potenció las capacidades de analítica que hoy el equipo tiene consolidadas."
+      - "Desarrollé soluciones de datos para el Área de Promoción y Mantenimiento de la Salud — procesamiento de bases y visualizaciones para el seguimiento del área."
+      - "Habilito el autoservicio de analítica en la organización — coordino equipos y credenciales para que cada área consuma los activos de datos por su cuenta."
+
+  - puesto: "Asesor de Riesgo en Salud"
+    empresa: "Nefrólogos Colombia"
+    ubicacion: "Semi-Presencial, La Guajira"
+    fecha_inicio: "2023-03"
+    fecha_fin: "Actualidad"   # concurrente con SerSocial
+    descripcion:
+      - "Desarrollé e implementé el sistema de agendamiento de citas y laboratorios del PGR-ERC, que prioriza según la clasificación de riesgo renal y el modelo de atención individual de cada paciente, y agrupa varios servicios en un mismo contacto — menos agendamientos repetidos y atención más completa por visita."
+      - "Elaboré los informes mensuales del programa — resultados en salud, monitoreo de la prestación de servicios y auditoría del proceso administrativo de atención."
+      - "Di soporte técnico a la negociación de las Notas Técnicas discutidas en la contratación del programa."
+
+  - puesto: "Asesor en Riesgo Jurídico"
+    empresa: "Gobernación del Departamento del Magdalena"
+    ubicacion: "Santa Marta, Magdalena"
+    fecha_inicio: "2022-02"
+    fecha_fin: "2022-07"
+    descripcion:
+      - "Diseñé la metodología de riesgo jurídico y contingente de la Gobernación, trasladando el enfoque de gestión de riesgo en salud al terreno legal, para priorizar la intervención de los procesos más riesgosos y evitar su repetición."
+      - "Construí la primera versión del sistema de ingesta de datos de los procesos judiciales, estandarizando los atributos para organizar y clasificar la información dispersa en los expedientes."
+      - "Implementé las etapas iniciales de la estrategia de defensa jurídica institucional."
+
+  - puesto: "Coordinador del Proceso AFRAC"
+    empresa: "ESE Hospital Niño Jesús"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2021-06"
+    fecha_fin: "2021-11"
+    descripcion:
+      - "Sostuve con datos la gestión del ciclo de ingresos del hospital (Admisiones, Facturación, Radicación, Auditoría y Cartera) — reporte semanal de desempeño que la gerencia usó para decidir."
+      - "Analicé el uso del tiempo del equipo de contacto y documenté oportunidades de mejora."
+
+  # --- ARCHIVADO (no se renderiza): rol de asistente, conservado para memoria ---
+  # - puesto: "Asesor de Riesgo en Salud"
+  #   empresa: "Centro de Ortopedia Infantil del Caribe"
+  #   fecha_inicio: "2021-11"
+  #   fecha_fin: "2022-02"
+  #   descripcion:
+  #     - "Como asistente técnico, traduje a Excel los conceptos estratégicos del programa de riesgos (ortopedia pediátrica) para darles claridad, y apoyé la conformación de cronogramas."
+
+  - puesto: "Gerente"
+    empresa: "Hotel Inversiones La Casona SAS"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2020-01"
+    fecha_fin: "2021-02"
+    descripcion:
+      - "Dirigí el giro del negocio y dupliqué los ingresos frente a los seis meses previos a mi gestión."
+      - "Lo logré en tres frentes — +100% en captación de clientes (marketing digital), +200% en alianzas empresariales y reinversión en el activo (remodelé el 50% de las habitaciones y recuperé el 70% del espacio deteriorado)."
+
+  - puesto: "Asesor en Capital Social"
+    empresa: "EPSS AMBUQ ESS"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2019-04"
+    fecha_fin: "2020-01"
+    descripcion:
+      - "Diseñé y ejecuté el Plan de Desarrollo de Capital Social de la EPS con métodos cualitativos de investigación, que la entidad adoptó como su nuevo Plan de Relacionamiento institucional."
+
+  - puesto: "Asistente de Docencia"
+    empresa: "Fundación Universidad del Norte"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2018-07"
+    fecha_fin: "2018-11"
+    descripcion:
+      - "Nivelé a estudiantes con dificultades académicas con refuerzo adaptado a cada caso."
+      - "Medí y reporté su progreso para que el equipo docente decidiera dónde intervenir."
+
+  - puesto: "Monitor de Principios de Macroeconomía"
+    empresa: "Fundación Universidad del Norte"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2017-06"
+    fecha_fin: "2018-05"
+    descripcion:
+      - "Diseñé sesiones y material de refuerzo sobre los principios de la macroeconomía y su lógica causal, para que cada estudiante razonara por su cuenta el resto de la materia."

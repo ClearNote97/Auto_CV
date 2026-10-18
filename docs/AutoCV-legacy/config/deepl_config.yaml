@@ -1,0 +1,12 @@
+# Configuración de DeepL API
+# TODO: Definir configuración DeepL
+deepl:
+  api_url: "https://api-free.deepl.com" # URL base de la API (cambiar a api.deepl.com si usas Pro)
+  timeout: 30 # Tiempo máximo de espera para una petición (segundos)
+  max_retries: 3 # Número de reintentos en caso de error de red
+
+translation:
+  preserve_formatting: true # Intenta mantener el formato del texto original
+  split_sentences: "1" # 0=no dividir, 1=dividir, nonewlines=dividir sin saltos de línea
+  formality: "default" # Nivel de formalidad: default, more, less
+  glossary_id: null # ID de glosario personalizado (si usas glosarios en DeepL)

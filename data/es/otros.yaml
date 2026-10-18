@@ -1,0 +1,33 @@
+# Otros datos en español
+idiomas:
+  - idioma: "Español"
+    nivel_lectura: "Nativo"
+    nivel_escritura: "Nativo"
+    nivel_comprensión_auditiva: "Nativo"
+    nivel_habla: "Nativo"
+
+  - idioma: "Inglés"
+    nivel_lectura: "Intermedio (B2)"
+    nivel_escritura: "Intermedio (B2)"
+    nivel_comprensión_auditiva: "Intermedio (B2)"
+    nivel_habla: "Intermedio (B2)"
+
+  - idioma: "Italiano"
+    nivel_lectura: "Intermedio (B2)"
+    nivel_escritura: "Intermedio (B2)"
+    nivel_comprensión_auditiva: "Intermedio (B2)"
+    nivel_habla: "Intermedio (B2)"
+
+  - idioma: "Francés"
+    nivel_lectura: "Intermedio (B2)"
+    nivel_escritura: "Intermedio (B2)"
+    nivel_comprensión_auditiva: "Intermedio (B2)"
+    nivel_habla: "Intermedio (B2)"
+
+intereses:
+  - "Aprendizaje Activo"
+  - "Ávido Lector"
+  - "Práctica de Bellas Artes: Música, Danza y Teatro"
+  - "Práctica de Deportes: Ciclismo"
+  - "Espíritu Aventurero"
+  - "Visionario"

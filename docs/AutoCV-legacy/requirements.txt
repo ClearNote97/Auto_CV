@@ -1,0 +1,30 @@
+# =============================================================================
+# AutoCV — dependencias Python
+# Regla: lo que se IMPORTA en src/ vive arriba (corrida 0). Lo aspiracional,
+# claramente separado y comentado, para que `pip install -r` no mienta.
+# =============================================================================
+
+# --- Requerido en la corrida 0 (se importa en src/) ---
+pyyaml>=6.0           # yaml — data_loader / translator / template_renderer / config
+jinja2>=3.1.0         # jinja2 — template_renderer (render LaTeX con delimitadores propios)
+requests>=2.31.0      # requests — translator.py llama a la API de DeepL con HTTP crudo
+python-dotenv>=1.0.0  # dotenv — config.py carga DEEPL_API_KEY desde .env
+
+# --- Declarado pero AÚN NO USADO por el código actual ---
+# El código NO importa nada de esto todavía. Se conservan porque son el destino
+# de la reconstrucción (ver README §5.3): migrar translator.py a la lib oficial
+# `deepl` (batch + retries + formality) y montar un CLI con `click`.
+# Descoméntalos cuando el código realmente los use, para no inflar la corrida 0.
+# deepl>=1.12.0       # cliente OFICIAL DeepL — reemplazará el `requests` crudo
+# click>=8.1.0        # CLI orquestador único (autocv build ...) — hoy se usa argparse
+# rich>=13.0.0        # salida de consola enriquecida (opcional, no importado)
+# colorama>=0.4.6     # color en terminal Windows (opcional, no importado)
+
+# --- Desarrollo y calidad (no requerido para generar el CV) ---
+# Los tests son stubs `# TODO`; el gate no está activo. Instala con:
+#   pip install -r requirements.txt        (solo runtime, si comentas esta sección)
+# o mantenlos para el pipeline de calidad de la reconstrucción.
+pytest>=7.0.0         # framework de tests
+black>=23.0.0         # formateador
+flake8>=6.0.0         # linter
+mypy>=1.0.0           # type-checking estático

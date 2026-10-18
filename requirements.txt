@@ -1,0 +1,51 @@
+# =============================================================================
+# AutoCV — Dependencias Python (declaración Estado 0 · trazabilidad)
+# =============================================================================
+# Este archivo DECLARA las dependencias (convención Estado 0 de ClearNote_Dev).
+# La gestión real es con uv: el Dev Container las materializa en `pyproject.toml`
+# + `uv.lock` y el proyecto se corre con `uv run`. No se usa pip.
+# AutoCV es una herramienta CLI (sin DB, sin web); el resto del stack de
+# ClearNote_Dev está DESACTIVADO abajo (se activa si creces a full-stack).
+# =============================================================================
+
+# --- Runtime (lo que el pipeline necesita para correr) ---
+pyyaml>=6.0           # Leer/escribir los datos del CV en YAML
+jinja2>=3.1.0         # Render de la plantilla LaTeX (delimitadores propios)
+deepl>=1.18.0         # Traducción ES→EN (cliente oficial, en lote)
+python-dotenv>=1.0.0  # Cargar DEEPL_API_KEY desde .env
+
+# --- Desarrollo y calidad ---
+pytest>=7.0.0         # Tests
+black>=23.0.0         # Formateador
+flake8>=6.0.0         # Linter
+mypy>=1.0.0           # Type-checking estático
+
+# =============================================================================
+# Stack opcional de ClearNote_Dev — DESACTIVADO (AutoCV no lo usa).
+# Descomenta por bloques solo si activas el scaffold full-stack (src/backend,
+# src/frontend, src/database, src/analytics). Nunca mezcles motores que compiten.
+# =============================================================================
+# --- Datos / analítica (Polars por defecto) ---
+# polars>=1.0.0
+# pyarrow>=16.0.0
+# fastexcel>=0.12.0
+# xlsxwriter>=3.2.0
+# openpyxl>=3.1.5
+# --- ORM / DB (Postgres) ---
+# sqlmodel>=0.0.22
+# sqlalchemy>=2.0.0
+# psycopg2-binary>=2.9.0
+# alembic>=1.13.0
+# --- Seguridad / utilidades ---
+# cryptography>=42.0.0
+# python-dateutil>=2.9.0
+# pytz>=2024.1
+# --- Notebooks ---
+# ipython>=8.25.0
+# ipykernel>=6.29.0
+# --- UI (elegir UNO) / API / orquestación ---
+# reflex>=0.8.13      |  flet>=0.25.0
+# fastapi>=0.115.0 + uvicorn[standard]>=0.30.0
+# prefect>=3.0.0
+# --- Analítica / ML ---
+# scikit-learn>=1.5.0 ; xgboost>=2.0.0 ; statsmodels>=0.14.0 ; mlflow>=2.14.0

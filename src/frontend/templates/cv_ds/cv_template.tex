@@ -1,0 +1,258 @@
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm,head=14pt,headsep=10pt,footskip=24pt}
+\usepackage{paracol}
+
+% Configuración de fuentes
+\iftutex
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% Colores
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{DarkPastelRed}{HTML}{450808}
+\definecolor{PastelRed}{HTML}{8F0D0D}
+\definecolor{GoldenEarth}{HTML}{E7D192}
+\colorlet{name}{black}
+\colorlet{tagline}{PastelRed}
+\colorlet{heading}{DarkPastelRed}
+\colorlet{headingrule}{GoldenEarth}
+\colorlet{subheading}{PastelRed}
+\colorlet{accent}{PastelRed}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Estilos de fuente
+\renewcommand{\namefont}{\huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\footnotesize}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+\renewcommand{\cvItemMarker}{{\small\textbullet}}
+\renewcommand{\cvRatingMarker}{\faCircle}
+
+% Configuración para publicaciones
+\input{pubs-num.cfg}
+
+% --- Override de \cvtag: respeta el ancho de la columna ---
+% El \cvtag original (altacv.cls) es un nodo TikZ de una sola línea sin ancho máximo:
+% una aptitud larga se desborda por el borde derecho. Aquí medimos el texto; si su
+% ancho natural (+ padding) supera la columna, limitamos el ancho al de la columna y
+% dejamos que ENVUELVA dentro del chip. Los tags cortos siguen siendo pills inline.
+\newlength{\cvtagnatwidth}
+\renewcommand{\cvtag}[1]{%
+  \settowidth{\cvtagnatwidth}{#1}%
+  \addtolength{\cvtagnatwidth}{2ex}% aprox. inner xsep (1ex por lado)
+  \ifdim\cvtagnatwidth>\linewidth
+    \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,%
+      inner xsep=1ex,inner ysep=0.75ex,%
+      text width=\dimexpr\linewidth-2.5ex\relax,align=left]{#1};%
+  \else
+    \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,%
+      inner xsep=1ex,inner ysep=0.75ex,text height=1.5ex,text depth=.25ex]{#1};%
+  \fi
+  % Espacio rompible ENTRE chips (breakpoint + separación visual).
+  \penalty0\hspace{2pt plus 2pt}%
+}
+
+% \cvtagbox: encierra un grupo de chips en una CAJA del ancho de la columna.
+% Sin esto, en una columna de paracol TeX amontona chips en una "línea" más ancha
+% que la columna y el conjunto se desborda. El minipage fuerza el quiebre DENTRO
+% del ancho disponible → los chips nunca se salen del borde (idea del creator).
+\newcommand{\cvtagbox}[1]{%
+  \par\noindent\begin{minipage}[t]{\linewidth}\raggedright #1\end{minipage}\par%
+}
+
+% Override de \divider: el original no fuerza quiebre de párrafo, y como Jinja
+% (trim_blocks) pega `\divider\cvevent{...}` en una línea, el título del siguiente
+% cargo se colaba al final de la línea punteada. Aquí la regla va en su PROPIA línea
+% (\par antes y después) → el \cvevent siguiente arranca limpio debajo.
+\renewcommand{\divider}{%
+  \par\smallskip
+  {\color{body!30}\hdashrule{\linewidth}{0.6pt}{0.5ex}}%
+  \par\smallskip
+}
+
+% Override de \cvevent: empuja la UBICACIÓN al margen derecho.
+% El original pone fecha y ubicación en dos cajas de 0.5\linewidth, ambas alineadas
+% a la izquierda → en ancho completo la ubicación queda al centro con hueco a la
+% derecha. Aquí la caja de ubicación se alinea a la derecha ([r]) → fecha a la
+% izquierda, ubicación pegada al margen derecho. Solo cambia esa alineación.
+\renewcommand{\cvevent}[4]{%
+  {\large\color{emphasis}#1\par}%
+  \smallskip\normalsize
+  \ifstrequal{#2}{}{}{%
+    \textbf{\color{accent}#2}\par
+    \smallskip}%
+  \ifstrequal{#3}{}{}{%
+    {\small\makebox[0.5\linewidth][l]%
+      {\BeginAccSupp{method=pdfstringdef,ActualText={\datename:}}\cvDateMarker\EndAccSupp{}~#3}%
+    }}%
+  \ifstrequal{#4}{}{}{%
+    {\small\makebox[0.5\linewidth][r]%
+      {\BeginAccSupp{method=pdfstringdef,ActualText={\locationname:}}\cvLocationMarker\EndAccSupp{}~#4}%
+    }}\par
+  \medskip\normalsize
+}
+
+% Margen de emergencia: permite a TeX estirar un poco la última pasada antes de
+% desbordar, absorbiendo palabras largas de las viñetas (Renal Crónica, etc.).
+\setlength{\emergencystretch}{3em}
+
+% --- Marca de agua (header) desde pág. 2 + número de página (centrado) desde pág. 1 ---
+% altacv fuerza \pagestyle{empty} en un hook de begin-document; por eso los estilos
+% se APLICAN dentro del body (tras \makecvheader), no aquí.
+\usepackage{fancyhdr}
+% Link "¿Cómo hice este documento?" para el footer-izquierda (solo si hay repo_url).
+((* if repo_url *))
+\newcommand{\cvfooterlink}{\href{ ((( repo_url ))) }{\footnotesize\color{body!75}\faGithub\, ((( labels.como_hice ))) }}
+((* else *))
+\newcommand{\cvfooterlink}{}
+((* endif *))
+% Páginas 2+: marca arriba-derecha + link abajo-izquierda + número abajo-centro.
+\fancypagestyle{cvpage}{%
+  \fancyhf{}%
+  \fancyhead[R]{\footnotesize\color{body!75}Curriculum Vitae - ((( personales.nombre )))}%
+  \fancyfoot[L]{\cvfooterlink}%
+  \fancyfoot[C]{\footnotesize\color{body!75}\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}
+% Primera página: link abajo-izquierda + número abajo-centro (sin marca arriba).
+\fancypagestyle{cvfirst}{%
+  \fancyhf{}%
+  \fancyfoot[L]{\cvfooterlink}%
+  \fancyfoot[C]{\footnotesize\color{body!75}\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}
+
+\begin{document}
+
+% === INFORMACIÓN PERSONAL ===
+\name{ ((( personales.nombre ))) }
+\tagline{ ((( personales.titulo ))) }
+
+\personalinfo{
+  \email{ ((( personales.correo ))) }
+  \phone{ ((( personales.telefono ))) }
+  ((* if personales.linkedin *))\linkedin{ ((( personales.linkedin ))) }((* endif *))
+  ((* if personales.github *))\github{ ((( personales.github ))) }((* endif *))
+}
+
+\makecvheader
+\pagestyle{cvpage}      % páginas 2+: marca + número
+\thispagestyle{cvfirst} % página 1: solo número (sin marca)
+
+% === RESUMEN PROFESIONAL ===
+((* if personales.resumen *))
+\cvsection{ ((( labels.resumen ))) }
+((( personales.resumen )))
+\medskip
+((* endif *))
+
+% ============================================================================
+% BANDA SUPERIOR: Aptitudes Técnicas (70%) | Idiomas (30%)
+% ============================================================================
+\columnratio{0.7}
+\begin{paracol}{2}
+\vspace*{0pt}% ancla el tope de la columna: evita que paracol descarte el \bigskip
+             % de \cvsection en una columna y no en la otra (líneas desalineadas).
+
+% --- Columna izquierda (70%): Aptitudes (por categorías) ---
+% aptitudes.aptitudes es una lista de grupos { categoria, skills }. "categoria"
+% es un valor (se traduce); cada grupo = subtítulo + su caja de chips.
+\cvsection{ ((( labels.aptitudes ))) }
+((* for grupo in aptitudes.aptitudes *))
+\cvsubsection{ ((( grupo.categoria ))) }
+\cvtagbox{%
+((* for apt in grupo.skills *))
+\cvtag{ ((( apt ))) }
+((* endfor *))
+}
+((* endfor *))
+
+\switchcolumn
+\vspace*{0pt}% mismo ancla en la columna derecha para que ambas líneas alineen
+
+% --- Columna derecha (30%): Idiomas + Intereses (apilados, rellenan el hueco) ---
+\cvsection{ ((( labels.idiomas ))) }
+\cvtagbox{%
+((* for idioma in otros.idiomas *))
+\cvtag{ ((( idioma.idioma ))) - ((( idioma.nivel_lectura ))) }
+((* endfor *))
+}
+
+\medskip
+
+% Intereses: debajo de Idiomas, en la MISMA columna derecha (antes iba a ancho
+% completo y dejaba un hueco vacío bajo Idiomas).
+\cvsection{ ((( labels.intereses ))) }
+\cvtagbox{%
+((* for interes in otros.intereses *))
+\cvtag{ ((( interes ))) }
+((* endfor *))
+}
+
+\end{paracol}
+
+\medskip
+
+% ============================================================================
+% BLOQUE INFERIOR (ancho completo): Experiencia → Educación → Publicaciones → Certificaciones
+% ============================================================================
+
+% === EXPERIENCIA LABORAL ===
+\cvsection{ ((( labels.experiencia ))) }
+((* for exp in experiencia.experiencia *))
+\cvevent{ ((( exp.puesto ))) }{ ((( exp.empresa ))) }{ ((( exp.fecha_inicio ))) -- ((( exp.fecha_fin ))) }{ ((( exp.ubicacion ))) }
+((* if exp.descripcion and exp.descripcion|length > 0 *))
+\begin{itemize}
+  ((* for desc in exp.descripcion *))
+  \item ((( desc )))
+  ((* endfor *))
+\end{itemize}
+((* endif *))
+((* if not loop.last *))\divider((* endif *))
+((* endfor *))
+
+\medskip
+
+% === EDUCACIÓN ===
+\cvsection{ ((( labels.educacion ))) }
+((* for edu in educacion.educacion *))
+\cvevent{ ((( edu.grado ))) }{ ((( edu.institucion ))) }{ ((( edu.fecha_inicio ))) -- ((( edu.fecha_fin ))) }{ ((( edu.ubicacion ))) }
+((* if edu.trabajo_grado and edu.trabajo_grado != "Pendiente." *))
+((( labels.trabajo_grado ))): ((( edu.trabajo_grado )))
+((* endif *))
+((* if not loop.last *))\divider((* endif *))
+((* endfor *))
+
+\medskip
+
+% === PUBLICACIONES ===
+\cvsection{ ((( labels.publicaciones ))) }
+((* for pub in publicaciones.publicaciones *))
+\cvevent{ ((( pub.titulo ))) }{ ((( pub.autores ))) }{ ((( pub.año ))) }{ ((( pub.tipo ))) }
+Revista: ((( pub.revista )))
+((* if pub.enlace *))
+\href{ ((( pub.enlace ))) }{ ((( labels.ver_pub ))) }
+((* endif *))
+((* if not loop.last *))\divider((* endif *))
+((* endfor *))
+
+\medskip
+
+% === CERTIFICACIONES ===
+\cvsection{ ((( labels.certificaciones ))) }
+((* for cert in certificaciones.certificaciones *))
+\cvevent{ ((( cert.nombre ))) }{ ((( cert.institucion ))) }{ ((( cert.fecha_inicio ))) -- ((( cert.fecha_fin ))) }{}
+((* if not loop.last *))\divider((* endif *))
+((* endfor *))
+
+\end{document}

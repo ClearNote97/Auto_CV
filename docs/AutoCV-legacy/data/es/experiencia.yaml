@@ -1,0 +1,101 @@
+# Experiencia laboral en español
+# # Base de datos de experiencias laborales
+# experiencia:
+#   - puesto: ""
+#     empresa: ""
+#     ubicacion: ""
+#     fecha_inicio: ""
+#     fecha_fin: ""
+#     descripcion: >
+#       .
+
+experiencia:
+  - puesto: "Analista de Datos en Salud"
+    empresa: "Fundación SerSocial IPS"
+    ubicacion: "Cartagena, Bolívar"
+    fecha_inicio: "2023-06"
+    fecha_fin: "Actualidad"
+    descripcion: >
+      - "Lideré el desarrollo de soluciones basadas en datos para el Área de Promoción y Mantenimiento de la Salud, mediante el procesamiento eficiente de bases de datos y creación de visualizaciones dinámicas."
+      - "Diseñé e implementé la estrategia de Business Intelligence para la organización, orientando lo mecanis-mos para apoyar la toma de decisiones estratégicas."
+      - "Rediseñé y documenté el lago de datos, logrando una estructura más eficiente y accesible para los equipos internos."
+
+  - puesto: "Asesor de Riesgo en Salud"
+    empresa: "Nefrólogos Colombia"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2023-03"
+    fecha_fin: "Actualidad"
+    descripcion:
+      - "Diseñé el Programa de Gestión del Riesgo de la Enfermedad Renal Crónica (PGR-ERC) para mejorar la atención y seguimiento de la población del Departamento de La Guajira."
+      - "Elaboré informes de gestión mensual del PGR-ERC, optimizando el análisis de datos y la creación de visualizaciones, en alineación con las especificaciones técnicas del contrato."
+      - "Desarrollé e implementé un sistema integral de agendamiento de citas médicas y laboratorios, basado en la Nota Técnica del Contrato, el perfil de enfermedades precursoras, la clasificación del riesgo renal y el modelo de atención individual de cada usuario. Esta solución optimizó la eficiencia operativa y mejoró significativamente la atención a pacientes con Enfermedad Renal Crónica (ERC)."
+
+  - puesto: "Asesor en Riesgo Jurídico"
+    empresa: "Gobernación del Departamento del Magdalena"
+    ubicacion: "Santa Marta, Magdalena"
+    fecha_inicio: "2022-02"
+    fecha_fin: "2022-07"
+    descripcion:
+      - "Diseñé una metodología innovadora para medir el riesgo jurídico y contingente, adaptada a las necesidades de la Gobernación."
+      - "Implementé las etapas iniciales de la estrategia de defensa jurídica institucional."
+      - "Desarrollé un sistema de información interno para la gestión de procesos judiciales, asegurando un 95% de control y accesibilidad sobre la información procesal."
+      - "Actualicé y mantuve la base de datos consolidada de procesos judiciales, mejorando la trazabilidad y eficiencia del manejo de casos."
+
+  - puesto: "Asesor de Riesgo en Salud"
+    empresa: "Centro de Ortopedia Infantil del Caribe"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2021-11"
+    fecha_fin: "2022-02"
+    descripcion:
+      - "Se realizó el entrenamiento y seguimiento al equipo de planeación de la IPS, en elaboración de las notas técnicas de soporte al programa de gestión de los riesgos que se atienden en ortopedia pediátrica."
+
+  - puesto: "Coordinador del Proceso AFRAC"
+    empresa: "ESE Hospital Niño Jesús"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2021-06"
+    fecha_fin: "2021-11"
+    descripcion:
+      - "Supervisé el cumplimiento de los procesos de Admisiones, Facturación, Radicación, Auditoría y Cartera, asegurando la alineación con los estándares establecidos."
+      - "Generé informes semanales sobre cumplimiento y desempeño del equipo, facilitando la toma de decisiones informadas por parte de la gerencia."
+      - "Detecté y documenté oportunidades de mejora en los procesos, aumentando la productividad y efectividad del equipo."
+
+  - puesto: "Gerente"
+    empresa: "Hotel Inversiones La Casona SAS"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2020-01"
+    fecha_fin: "2021-02"
+    descripcion:
+      - "Coordiné la remodelación y mantenimiento del 50% de las habitaciones, mejorando significativamente la experiencia del cliente."
+      - "Incrementé en un 100% la captación de nuevos clientes mediante estrategias efectivas de marketing digital."
+      - "Generé un crecimiento del 200% en nuevas alianzas empresariales a través de negociaciones estratégicas y formales."
+      - "Recuperé el 70% del espacio deteriorado en las instalaciones, optimizando la funcionalidad del hotel."
+      - "Aumenté en un 100% los ingresos en comparación con los seis meses previos a mi gestión."
+
+  - puesto: "Asesor Externo en Capital Social"
+    empresa: "EPSS AMBUQ ESS"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2019-04"
+    fecha_fin: "2020-01"
+    descripcion:
+      - "Diseñé y ejecuté el Plan de Desarrollo de Capital Social Interno y Externo, empleando métodos cualitativos de investigación para fortalecer las relaciones internas y externas de la empresa."
+      - "Se creó el Nuevo Plan de Relacionamiento de la Empresa EPSS AMBUQ ESS (2019)."
+
+  - puesto: "Asistente de Docencia"
+    empresa: "Fundación Universidad del Norte"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2018-07"
+    fecha_fin: "2018-11"
+    descripcion:
+      - "Brindé apoyo personalizado a estudiantes con dificultades académicas, aplicando estrategias pedagógicas específicas que mejoraron su rendimiento."
+      - "Redacté informes detallados de evaluación y progreso, facilitando el seguimiento académico por parte del equipo docente."
+      - "Colaboré en el diseño y ejecución de actividades educativas y lúdicas para fomentar el aprendizaje activo."
+      - "Asistí a los docentes en el desarrollo curricular y en la logística de exámenes."
+
+  - puesto: "Monitor de Principios de Macroeconomía"
+    empresa: "Fundación Universidad del Norte"
+    ubicacion: "Barranquilla, Atlántico"
+    fecha_inicio: "2017-06"
+    fecha_fin: "2018-05"
+    descripcion:
+      - "Proporcioné apoyo académico a estudiantes con dificultades en macroeconomía, implementando estrategias para mejorar su comprensión de los temas clave."
+      - "Asistí a estudiantes en el desarrollo curricular y preparación para exámenes."

@@ -1,0 +1,83 @@
+# Certificaciones en español
+# Base de datos de certificaciones
+# certificaciones:
+#   - nombre: ""
+#     institucion: ""
+#     fecha_inicio: ""
+#     fecha_fin: ""
+
+certificaciones:
+  - nombre: "Curso de Análisis de Datos con Power BI"
+    institucion: "Platzi"
+    fecha_inicio: "2023-06"
+    fecha_fin: "2023-06"
+
+  - nombre: "Curso en Visualización de Datos en Python de IBM DV0101EN"
+    institucion: "IBM"
+    fecha_inicio: "2023-01"
+    fecha_fin: "2023-02"
+
+  - nombre: "Certificado Profesional: IBM Data Analyst"
+    institucion: "IBM"
+    fecha_inicio: "2021-04"
+    fecha_fin: "2023-04"
+
+  - nombre: "Certificado Profesional: IBM Python Data Scientist"
+    institucion: "IBM"
+    fecha_inicio: "2022-07"
+    fecha_fin: "2023-04"
+
+  - nombre: "Curso en Formulación de Proyectos con Metodología General Ajustada"
+    institucion: "Universidad Pontificia Bolivariana"
+    fecha_inicio: "2023-04"
+    fecha_fin: "2023-05"
+
+  - nombre: "Iniciando con el Uso de Power BI Desktop"
+    institucion: "Coursera"
+    fecha_inicio: "2023-06"
+    fecha_fin: "2023-06"
+
+  - nombre: "Curso en Machine Learning en Python: Una Introducción Práctica de IBM ML0101EN"
+    institucion: "IBM"
+    fecha_inicio: "2023-01"
+    fecha_fin: "2023-01"
+
+  - nombre: "Curso en Análisis de Datos en Python de IBM DA0101EN"
+    institucion: "IBM"
+    fecha_inicio: "2022-12"
+    fecha_fin: "2023-01"
+
+  - nombre: "Curso en SQL para Ciencia de Datos de IBM DB0201EN"
+    institucion: "IBM"
+    fecha_inicio: "2022-10"
+    fecha_fin: "2022-12"
+
+  - nombre: "Curso en Bases de Python para Ciencia de Datos de IBM PY0101EN"
+    institucion: "IBM"
+    fecha_inicio: "2022-07"
+    fecha_fin: "2022-10"
+
+  - nombre: "Curso en Visualización de Datos y Construcción de Tableros con Excel y Cognos de IBM DV0130"
+    institucion: "IBM"
+    fecha_inicio: "2022-06"
+    fecha_fin: "2022-07"
+
+  - nombre: "Curso en Análisis de Datos en Excel de IBM DA0130"
+    institucion: "IBM"
+    fecha_inicio: "2021-07"
+    fecha_fin: "2022-06"
+
+  - nombre: "Curso en Analítica de Datos, Bases Para Todos de IBM DA0100"
+    institucion: "IBM"
+    fecha_inicio: "2021-04"
+    fecha_fin: "2021-05"
+
+  - nombre: "Diplomado en el Programa de Formación Inicial Docente"
+    institucion: "Fundación Universidad del Norte"
+    fecha_inicio: "2018-07"
+    fecha_fin: "2018-11"
+
+  - nombre: "Diplomado en Formación Pedagógica de Pares Académicos"
+    institucion: "Fundación Universidad del Norte"
+    fecha_inicio: "2017-07"
+    fecha_fin: "2017-11"

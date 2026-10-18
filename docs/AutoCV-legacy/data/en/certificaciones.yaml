@@ -1,0 +1,63 @@
+certificaciones:
+- nombre: Data Analysis with Power BI course
+  institucion: Platzi
+  fecha_inicio: 2023-06
+  fecha_fin: 2023-06
+- nombre: IBM Python Data Visualization Course DV0101EN
+  institucion: IBM
+  fecha_inicio: 2023-01
+  fecha_fin: 2023-02
+- nombre: 'Professional Certificate: IBM Data Analyst'
+  institucion: IBM
+  fecha_inicio: 2021-04
+  fecha_fin: 2023-04
+- nombre: 'Professional Certificate: IBM Python Data Scientist'
+  institucion: IBM
+  fecha_inicio: 2022-07
+  fecha_fin: 2023-04
+- nombre: Course in Project Formulation with Adjusted General Methodology
+  institucion: Pontifical Bolivarian University
+  fecha_inicio: 2023-04
+  fecha_fin: 2023-05
+- nombre: Getting Started with Power BI Desktop
+  institucion: Coursera
+  fecha_inicio: 2023-06
+  fecha_fin: 2023-06
+- nombre: 'Course in Machine Learning in Python: A Practical Introduction from IBM
+    ML0101EN'
+  institucion: IBM
+  fecha_inicio: 2023-01
+  fecha_fin: 2023-01
+- nombre: IBM Python Data Analysis course DA0101EN
+  institucion: IBM
+  fecha_inicio: 2022-12
+  fecha_fin: 2023-01
+- nombre: Course in SQL for IBM Data Science DB0201EN
+  institucion: IBM
+  fecha_inicio: 2022-10
+  fecha_fin: 2022-12
+- nombre: IBM Python Basis for Data Science Course PY0101EN
+  institucion: IBM
+  fecha_inicio: 2022-07
+  fecha_fin: 2022-10
+- nombre: Course in Data Visualization and Dashboard Building with IBM Excel and Cognos
+    DV0130
+  institucion: IBM
+  fecha_inicio: 2022-06
+  fecha_fin: 2022-07
+- nombre: IBM Data Analysis in Excel Course DA0130
+  institucion: IBM
+  fecha_inicio: 2021-07
+  fecha_fin: 2022-06
+- nombre: IBM DA0100 Data Analytics, Bases For All Course
+  institucion: IBM
+  fecha_inicio: 2021-04
+  fecha_fin: 2021-05
+- nombre: Diploma in the Initial Teacher Training Program
+  institucion: Universidad del Norte Foundation
+  fecha_inicio: 2018-07
+  fecha_fin: 2018-11
+- nombre: Diploma in Pedagogical Training of Academic Peers
+  institucion: Universidad del Norte Foundation
+  fecha_inicio: 2017-07
+  fecha_fin: 2017-11
