@@ -65,5 +65,6 @@
   sin el sample upstream); deps con **uv** (`pyproject.toml` + `uv.lock`, requirements.txt = Estado 0);
   scaffold full-stack de ClearNote podado. → **CA6** ✓.
 
-- [~] **9. Documentar.** Parcial: README showcase (refleja el comando único, pipeline y metodología) ✓.
-  Pendiente opcional: ADRs en `docs/decisions/` para decisiones no triviales (plantilla, layout, i18n).
+- [x] **9. Documentar.** ✔ Hecho.
+  README showcase (comando único, pipeline, metodología) + **6 ADRs** en `docs/decisions/` (CV como datos,
+  sin DB, Jinja2+escape LaTeX, traducción lote/cache/glosario, presentación/layout/i18n, uv/Estado 0).
