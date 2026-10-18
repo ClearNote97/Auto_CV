@@ -138,11 +138,12 @@
 \name{ ((( personales.nombre ))) }
 \tagline{ ((( personales.titulo ))) }
 
+% Sin espacios dentro de los {}: altacv los mete en la URL del link y la rompe.
 \personalinfo{
-  \email{ ((( personales.correo ))) }
-  \phone{ ((( personales.telefono ))) }
-  ((* if personales.linkedin *))\linkedin{ ((( personales.linkedin ))) }((* endif *))
-  ((* if personales.github *))\github{ ((( personales.github ))) }((* endif *))
+  \email{((( personales.correo )))}
+  \phone{((( personales.telefono )))}
+  ((* if personales.linkedin *))\linkedin{((( personales.linkedin )))}((* endif *))
+  ((* if personales.github *))\github{((( personales.github )))}((* endif *))
 }
 
 \makecvheader
