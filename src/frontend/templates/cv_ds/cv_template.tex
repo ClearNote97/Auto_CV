@@ -110,7 +110,7 @@
 \usepackage{fancyhdr}
 % Link "¿Cómo hice este documento?" para el footer-izquierda (solo si hay repo_url).
 ((* if repo_url *))
-\newcommand{\cvfooterlink}{\href{ ((( repo_url ))) }{\footnotesize\color{body!75}\faGithub\, ((( labels.como_hice ))) }}
+\newcommand{\cvfooterlink}{\href{((( repo_url )))}{\footnotesize\color{body!75}\faGithub\, ((( labels.como_hice ))) }}
 ((* else *))
 \newcommand{\cvfooterlink}{}
 ((* endif *))
@@ -241,7 +241,7 @@
 \cvevent{ ((( pub.titulo ))) }{ ((( pub.autores ))) }{ ((( pub.año ))) }{ ((( pub.tipo ))) }
 Revista: ((( pub.revista )))
 ((* if pub.enlace *))
-\href{ ((( pub.enlace ))) }{ ((( labels.ver_pub ))) }
+\href{((( pub.enlace )))}{ ((( labels.ver_pub ))) }
 ((* endif *))
 ((* if not loop.last *))\divider((* endif *))
 ((* endfor *))
