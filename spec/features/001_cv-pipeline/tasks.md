@@ -54,12 +54,16 @@
   _Verificado en contenedor:_ `python -m src.autocv.cli build --lang es` genera `output/cv_final_es.pdf`
   en un comando. (La ruta `both`/`en` usa DeepL en vivo → se ejercita en el smoke de aceptación / al correrlo.)
 
-- [ ] **7. Tests reales + gate.** Unit (`data_loader`, `translator` mock, `renderer` fixture) +
-  acceptance (smoke del pipeline contra CA1–CA6). Activar pre-commit con black+flake8+mypy+pytest. → **CA7**.
+- [x] **7. Tests reales + gate.** ✔ Hecho.
+  23 tests (`tests/`): config (key lazy, labels), data_loader (faltante/vacío), translator con DeepL
+  **mockeado** (lote, cache hit/miss, skip-keys, glosario), renderer (escape LaTeX, delimitadores),
+  cli (slug del nombre) y smoke de aceptación (pipeline ES con compile mockeado → CA1/CA5). Gate verde:
+  **ruff (format + lint) + mypy + pytest** configurado en `.pre-commit-config.yaml`. → **CA7** ✓.
 
-- [ ] **8. Higiene.** `.gitignore` real (`__pycache__/`, `*.pyc`, `.env`, `output/**`, `*.aux/.log/.bcf/.run.xml`,
-  `.cache/`); dejar **una** plantilla sin el sample upstream (`sample.*`, `mmayer.*`, imágenes, `x.log`);
-  separar intermedios del PDF final. → **CA6**.
+- [x] **8. Higiene.** ✔ Hecho.
+  `.gitignore` real (output/, .cache/, aux LaTeX, data/en/, __pycache__, .env); **una** plantilla (`cv_ds`,
+  sin el sample upstream); deps con **uv** (`pyproject.toml` + `uv.lock`, requirements.txt = Estado 0);
+  scaffold full-stack de ClearNote podado. → **CA6** ✓.
 
-- [ ] **9. Documentar** en `docs/` el cómo/porqué del pipeline (ADR si hay decisión no trivial, p. ej. elección
-  de plantilla) y actualizar el README del proyecto para reflejar el comando único.
+- [~] **9. Documentar.** Parcial: README showcase (refleja el comando único, pipeline y metodología) ✓.
+  Pendiente opcional: ADRs en `docs/decisions/` para decisiones no triviales (plantilla, layout, i18n).

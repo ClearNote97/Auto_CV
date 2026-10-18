@@ -14,7 +14,6 @@ un pulido opcional (roadmap), no un requisito.
 import argparse
 import logging
 import sys
-from typing import List, Optional
 
 from src.autocv.config import load_config
 from src.autocv.data_loader import DataLoader
@@ -39,11 +38,11 @@ def _slug_name(nombre: str) -> str:
 
 def build(
     lang: str = "both",
-    output: Optional[str] = None,
-    template: Optional[str] = None,
+    output: str | None = None,
+    template: str | None = None,
     clean: bool = True,
     force: bool = False,
-) -> List[str]:
+) -> list[str]:
     """Ejecuta el pipeline completo para el/los idioma(s) pedidos. Devuelve rutas de PDF generadas."""
     cfg = load_config()
     source = cfg.get_source_language()  # es
@@ -67,7 +66,7 @@ def build(
     renderer = Renderer(cfg)
     compiler = PdfCompiler(cfg)
 
-    pdfs: List[str] = []
+    pdfs: list[str] = []
     for lg in langs:
         logger.info("── Idioma '%s' ──", lg)
         data = loader.load_all_data(lg)
@@ -87,17 +86,26 @@ def _build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
 
     b = sub.add_parser("build", help="Reconstruye el CV: load → translate → render → compile.")
-    b.add_argument("--lang", "-l", choices=["es", "en", "both"], default="both",
-                   help="Idioma(s) a generar (default: both).")
-    b.add_argument("--output", "-o", default=None,
-                   help="Nombre base de salida (default: CV_<nombre> de config/personales).")
+    b.add_argument(
+        "--lang",
+        "-l",
+        choices=["es", "en", "both"],
+        default="both",
+        help="Idioma(s) a generar (default: both).",
+    )
+    b.add_argument(
+        "--output",
+        "-o",
+        default=None,
+        help="Nombre base de salida (default: CV_<nombre> de config/personales).",
+    )
     b.add_argument("--template", "-t", default=None, help="Plantilla .tex (default: la de config.yaml).")
     b.add_argument("--no-clean", action="store_true", help="No limpiar auxiliares de LaTeX.")
     b.add_argument("--force", action="store_true", help="Re-traducir todo, ignorando la cache por hash.")
     return parser
 
 
-def main(argv: Optional[List[str]] = None) -> int:
+def main(argv: list[str] | None = None) -> int:
     args = _build_parser().parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 

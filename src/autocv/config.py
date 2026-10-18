@@ -14,10 +14,10 @@ Cambios respecto al legacy:
 """
 
 import os
-import yaml
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any
 
+import yaml
 from dotenv import load_dotenv
 
 
@@ -30,7 +30,7 @@ class Config:
 
     def __init__(self, config_dir: str = "config"):
         self.config_dir = Path(config_dir)
-        self._config: Dict[str, Any] = {}
+        self._config: dict[str, Any] = {}
 
         load_dotenv()
 
@@ -44,7 +44,7 @@ class Config:
         if not config_file.exists():
             raise ConfigError(f"Archivo de configuración no encontrado: {config_file}")
         try:
-            with open(config_file, "r", encoding="utf-8") as f:
+            with open(config_file, encoding="utf-8") as f:
                 self._config.update(yaml.safe_load(f) or {})
         except yaml.YAMLError as e:
             raise ConfigError(f"Error al leer {config_file}: {e}")
@@ -52,11 +52,9 @@ class Config:
     def _load_deepl_config(self) -> None:
         deepl_config_file = self.config_dir / "deepl_config.yaml"
         if not deepl_config_file.exists():
-            raise ConfigError(
-                f"Archivo de configuración DeepL no encontrado: {deepl_config_file}"
-            )
+            raise ConfigError(f"Archivo de configuración DeepL no encontrado: {deepl_config_file}")
         try:
-            with open(deepl_config_file, "r", encoding="utf-8") as f:
+            with open(deepl_config_file, encoding="utf-8") as f:
                 self._config.update(yaml.safe_load(f) or {})
         except yaml.YAMLError as e:
             raise ConfigError(f"Error al leer {deepl_config_file}: {e}")
@@ -76,9 +74,7 @@ class Config:
         required_sections = ["project", "languages", "paths", "latex", "output"]
         for section in required_sections:
             if section not in self._config:
-                raise ConfigError(
-                    f"Sección requerida '{section}' no encontrada en la configuración"
-                )
+                raise ConfigError(f"Sección requerida '{section}' no encontrada en la configuración")
 
         for path_key in ["data_dir", "templates_dir", "output_dir"]:
             if path_key not in self._config["paths"]:
@@ -111,7 +107,7 @@ class Config:
         except (KeyError, TypeError):
             return default
 
-    def get_project_info(self) -> Dict[str, str]:
+    def get_project_info(self) -> dict[str, str]:
         return self._config.get("project", {})
 
     def get_source_language(self) -> str:
@@ -146,12 +142,12 @@ class Config:
     def get_main_template(self) -> str:
         return self._config["latex"].get("main_template", "cv_template.tex")
 
-    def get_deepl_config(self) -> Dict[str, Any]:
+    def get_deepl_config(self) -> dict[str, Any]:
         return self._config.get("deepl", {})
 
     def get_deepl_api_key(self) -> str:
         """Devuelve la API key de DeepL o falla claro si no está en el entorno."""
-        key: Optional[str] = self._config.get("deepl", {}).get("api_key")
+        key: str | None = self._config.get("deepl", {}).get("api_key")
         if not key:
             raise ConfigError(
                 "DEEPL_API_KEY no encontrada. Define un .env con tu clave para traducir "
@@ -162,10 +158,10 @@ class Config:
     def get_deepl_api_url(self) -> str:
         return self._config["deepl"].get("api_url", "https://api-free.deepl.com")
 
-    def get_translation_config(self) -> Dict[str, Any]:
+    def get_translation_config(self) -> dict[str, Any]:
         return self._config.get("translation", {})
 
-    def get_labels(self, lang: str) -> Dict[str, str]:
+    def get_labels(self, lang: str) -> dict[str, str]:
         """Etiquetas de la plantilla para un idioma (títulos de sección, textos fijos).
 
         Cae al idioma fuente si no hay entrada para `lang`.

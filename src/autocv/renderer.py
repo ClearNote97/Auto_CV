@@ -2,15 +2,14 @@
 
 Extraído del monolito legacy (`docs/AutoCV-legacy/src/modules/template_renderer.py`) — feature 001,
 Tarea 4. SOLO la parte de render: nada de cargar YAML (eso es `data_loader`) ni de compilar (eso es `pdf`).
-Conserva los delimitadores que no chocan con LaTeX: bloque `((* *))`, variable `((( )))`, comentario `((# #))`.
+Conserva los delimitadores que no chocan con LaTeX: `((* *))` (bloque) y `((( )))` (variable).
 """
 
 import re
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any
 
 from jinja2 import Environment, FileSystemLoader
-
 
 # Caracteres especiales de LaTeX → su forma escapada. Sin esto, un '%' en los datos
 # comenta el resto de la línea ("+100% en…" se corta), un '&' rompe la compilación, etc.
@@ -55,7 +54,7 @@ class Renderer:
 
     def __init__(self, config):
         self.config = config
-        self.template_dir = config.get_template_dir()   # p. ej. templates/cv_ds
+        self.template_dir = config.get_template_dir()  # p. ej. templates/cv_ds
         self.main_template = config.get_main_template()  # p. ej. cv_template.tex
         self.output_dir = config.get_output_dir()
 
@@ -68,14 +67,14 @@ class Renderer:
             comment_start_string="((#",
             comment_end_string="#))",
             trim_blocks=True,
-            autoescape=False,               # es LaTeX, no HTML
+            autoescape=False,  # es LaTeX, no HTML
             # Undefined por defecto (lenient): la plantilla usa `((* if opcional *))` para campos
             # que pueden faltar (linkedin, github, resumen, pub.enlace…). StrictUndefined los rompería.
             loader=FileSystemLoader(str(self.template_dir)),
         )
 
     @staticmethod
-    def _preprocess(data: Dict[str, Any]) -> Dict[str, Any]:
+    def _preprocess(data: dict[str, Any]) -> dict[str, Any]:
         """Ajustes de PRESENTACIÓN propios de la plantilla (no tocan la fuente en disco).
 
         Muestra el handle de LinkedIn/GitHub en vez de la URL completa. Se copia el dict para no
@@ -88,13 +87,11 @@ class Renderer:
                 personales["linkedin"].replace("https://www.linkedin.com/in/", "").strip("/")
             )
         if personales.get("github"):
-            personales["github"] = (
-                personales["github"].replace("https://github.com/", "").strip("/")
-            )
+            personales["github"] = personales["github"].replace("https://github.com/", "").strip("/")
         data["personales"] = personales
         return data
 
-    def render(self, data: Dict[str, Any], template_name: Optional[str] = None) -> str:
+    def render(self, data: dict[str, Any], template_name: str | None = None) -> str:
         """Renderiza `data` con la plantilla y devuelve el contenido LaTeX como string."""
         env = self._environment()
         name = template_name or self.main_template
@@ -109,7 +106,7 @@ class Renderer:
             raise RendererError(f"Error renderizando '{name}': {e}")
 
     def render_to_file(
-        self, data: Dict[str, Any], output_name: str = "cv_final", template_name: Optional[str] = None
+        self, data: dict[str, Any], output_name: str = "cv_final", template_name: str | None = None
     ) -> Path:
         """Renderiza y escribe `<output_dir>/<output_name>.tex`. Devuelve la ruta."""
         content = self.render(data, template_name)

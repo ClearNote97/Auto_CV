@@ -13,8 +13,9 @@ Fuera de alcance (→ feature 003): glosario, skip por campo (emails/URLs), tuni
 """
 
 import hashlib
+from collections.abc import Callable, Iterator
 from pathlib import Path
-from typing import Any, Callable, Iterator, List
+from typing import Any
 
 import yaml
 
@@ -37,7 +38,7 @@ def _is_translatable(value: Any) -> bool:
     return isinstance(value, str) and any(ch.isalpha() for ch in value)
 
 
-def _collect(data: Any, out: List[str], skip_keys: set, glossary: dict, skip: bool = False) -> None:
+def _collect(data: Any, out: list[str], skip_keys: set, glossary: dict, skip: bool = False) -> None:
     """Junta los strings a traducir, saltando valores bajo `skip_keys` y los del glosario.
 
     `skip` se propaga a los subárboles cuyo valor cuelga de una clave no-traducible.
@@ -55,8 +56,10 @@ def _collect(data: Any, out: List[str], skip_keys: set, glossary: dict, skip: bo
 def _rebuild(data: Any, translated: Iterator[str], skip_keys: set, glossary: dict, skip: bool = False) -> Any:
     """Reconstruye la estructura consumiendo `translated` en el MISMO orden que `_collect`."""
     if isinstance(data, dict):
-        return {k: _rebuild(v, translated, skip_keys, glossary, skip=skip or (k in skip_keys))
-                for k, v in data.items()}
+        return {
+            k: _rebuild(v, translated, skip_keys, glossary, skip=skip or (k in skip_keys))
+            for k, v in data.items()
+        }
     if isinstance(data, list):
         return [_rebuild(item, translated, skip_keys, glossary, skip=skip) for item in data]
     if _is_translatable(data) and not skip:
@@ -77,7 +80,7 @@ class Translator:
         self.es_dir = data_dir / self.source_lang
         self.en_dir = data_dir / self.target_lang
         self.cache_dir = Path(cache_dir)
-        self._client = None  # lazy
+        self._client: Any = None  # lazy (deepl.Translator al primer uso)
         tcfg = config.get_translation_config()
         self.skip_keys = set(tcfg.get("no_translate_keys", []))
         self.glossary = dict(tcfg.get("glossary", {}))
@@ -108,7 +111,7 @@ class Translator:
 
     # --- DeepL (único punto de red; mockeable en tests) ---
 
-    def _translate_batch(self, texts: List[str]) -> List[str]:
+    def _translate_batch(self, texts: list[str]) -> list[str]:
         """Traduce una lista de strings en UNA llamada a DeepL. Devuelve la lista traducida."""
         if not texts:
             return []
@@ -138,7 +141,7 @@ class Translator:
 
     def translate_data(self, data: Any) -> Any:
         """Traduce una estructura completa en lote, preservando claves y forma."""
-        texts: List[str] = []
+        texts: list[str] = []
         _collect(data, texts, self.skip_keys, self.glossary)
         translated = self._translate_batch(texts)
         return _rebuild(data, iter(translated), self.skip_keys, self.glossary)
@@ -147,7 +150,7 @@ class Translator:
         """Traduce un YAML fuente si cambió (o si force). Devuelve True si tradujo, False si cache hit."""
         if not force and not self._needs_translation(es_file):
             return False
-        with open(es_file, "r", encoding="utf-8") as f:
+        with open(es_file, encoding="utf-8") as f:
             data = yaml.safe_load(f)
         translated = self.translate_data(data)
         self.en_dir.mkdir(parents=True, exist_ok=True)

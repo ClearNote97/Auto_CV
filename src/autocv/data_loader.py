@@ -5,9 +5,9 @@ Sin cambios de lógica (estaba bien hecho); solo se ajusta el import de ejemplo 
 La validación profunda de forma por sección llega en la feature 002.
 """
 
+from typing import Any
+
 import yaml
-from pathlib import Path
-from typing import Any, Dict
 
 
 class DataLoaderError(Exception):
@@ -28,7 +28,7 @@ class DataLoader:
         if not file_path.exists():
             raise DataLoaderError(f"Archivo no encontrado: {file_path}")
         try:
-            with open(file_path, "r", encoding="utf-8") as f:
+            with open(file_path, encoding="utf-8") as f:
                 data = yaml.safe_load(f)
         except yaml.YAMLError as e:
             raise DataLoaderError(f"Error al leer {file_path}: {e}")
@@ -36,16 +36,16 @@ class DataLoader:
             raise DataLoaderError(f"El archivo {file_path} está vacío o mal formateado.")
         return data
 
-    def load_all_data(self, language: str) -> Dict[str, Any]:
+    def load_all_data(self, language: str) -> dict[str, Any]:
         """Carga todas las secciones YAML de un idioma en un solo diccionario por sección."""
         data_dir = self.config.get_data_dir() / language
         if not data_dir.exists():
             raise DataLoaderError(f"La carpeta de datos no existe: {data_dir}")
 
-        all_data: Dict[str, Any] = {}
+        all_data: dict[str, Any] = {}
         for file in sorted(data_dir.glob("*.yaml")):
             try:
-                with open(file, "r", encoding="utf-8") as f:
+                with open(file, encoding="utf-8") as f:
                     data = yaml.safe_load(f)
             except yaml.YAMLError as e:
                 raise DataLoaderError(f"Error al leer {file}: {e}")

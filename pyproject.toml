@@ -14,10 +14,29 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest>=7.0.0",
-    "black>=23.0.0",
-    "flake8>=6.0.0",
+    "ruff>=0.6.0",
     "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+# ruff = formateador + linter (reemplaza black + flake8).
+[tool.ruff]
+line-length = 110
+exclude = ["docs/AutoCV-legacy", ".venv", "output", ".cache"]
+
+[tool.ruff.lint]
+# pycodestyle (E/W) + pyflakes (F) ~ flake8; isort (I) + pyupgrade (UP) para 3.13.
+select = ["E", "F", "W", "I", "UP"]
+# E402: imports dentro de los bloques `if __name__ == "__main__"` (intencional).
+ignore = ["E402"]
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true   # deepl/yaml/jinja2/dotenv no traen stubs
+exclude = ['docs/AutoCV-legacy']
 
 # AutoCV es una app (se corre con `uv run`), no una librería a publicar:
 # uv gestiona el entorno sin intentar "construir" el proyecto.

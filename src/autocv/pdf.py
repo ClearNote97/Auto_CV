@@ -28,8 +28,8 @@ class PdfCompiler:
         self.config = config
         self.output_dir = config.get_output_dir()
         self.template_dir = config.get_template_dir()
-        self.engine = config.get_latex_engine()      # "latexmk"
-        self.options = config.get_latex_options()     # ["-pdf", "-interaction=nonstopmode", "-halt-on-error"]
+        self.engine = config.get_latex_engine()  # "latexmk"
+        self.options = config.get_latex_options()  # ["-pdf", "-interaction=nonstopmode", "-halt-on-error"]
 
     def _stage_assets(self) -> None:
         """Copia los archivos de la plantilla necesarios junto al .tex en output/."""
@@ -47,14 +47,10 @@ class PdfCompiler:
         # errors="replace": latexmk/pdflatex a veces emite bytes Latin-1 en su log
         # (p. ej. al eco de contenido acentuado); sin esto, decodificar la salida
         # crashea y oculta el resultado real de la compilación.
-        result = subprocess.run(
-            cmd, cwd=self.output_dir, capture_output=True, text=True, errors="replace"
-        )
+        result = subprocess.run(cmd, cwd=self.output_dir, capture_output=True, text=True, errors="replace")
         if result.returncode != 0:
             tail = "\n".join((result.stdout or "").splitlines()[-40:])
-            raise PdfError(
-                f"Falló la compilación ({' '.join(cmd)}). Últimas líneas del log:\n{tail}"
-            )
+            raise PdfError(f"Falló la compilación ({' '.join(cmd)}). Últimas líneas del log:\n{tail}")
 
         pdf_path = self.output_dir / f"{tex_path.stem}.pdf"
         if not pdf_path.exists():
@@ -69,7 +65,10 @@ class PdfCompiler:
         if self.engine == "latexmk":
             subprocess.run(
                 [self.engine, "-c", tex_path.name],
-                cwd=self.output_dir, capture_output=True, text=True, errors="replace",
+                cwd=self.output_dir,
+                capture_output=True,
+                text=True,
+                errors="replace",
             )
         stem = tex_path.stem
         # latexmk -c no borra estos: restos de biber/biblatex y copias de la plantilla.
