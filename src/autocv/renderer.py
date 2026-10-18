@@ -5,10 +5,45 @@ Tarea 4. SOLO la parte de render: nada de cargar YAML (eso es `data_loader`) ni 
 Conserva los delimitadores que no chocan con LaTeX: bloque `((* *))`, variable `((( )))`, comentario `((# #))`.
 """
 
+import re
 from pathlib import Path
 from typing import Any, Dict, Optional
 
 from jinja2 import Environment, FileSystemLoader
+
+
+# Caracteres especiales de LaTeX → su forma escapada. Sin esto, un '%' en los datos
+# comenta el resto de la línea ("+100% en…" se corta), un '&' rompe la compilación, etc.
+_LATEX_MAP = {
+    "\\": r"\textbackslash{}",
+    "&": r"\&",
+    "%": r"\%",
+    "$": r"\$",
+    "#": r"\#",
+    "_": r"\_",
+    "{": r"\{",
+    "}": r"\}",
+    "~": r"\textasciitilde{}",
+    "^": r"\textasciicircum{}",
+}
+_LATEX_RE = re.compile("|".join(re.escape(k) for k in _LATEX_MAP))
+
+# Claves cuyos valores son URLs/identificadores: NO se escapan (romperían el enlace).
+_NO_ESCAPE_KEYS = {"enlace", "linkedin", "github", "correo", "web", "repo_url"}
+
+
+def _escape_latex(data: Any, skip: bool = False) -> Any:
+    """Escapa recursivamente los especiales de LaTeX en los strings, salvo URLs/identificadores.
+
+    En UN solo paso (regex) para no re-escapar los '\' que introduce el propio escape.
+    """
+    if isinstance(data, dict):
+        return {k: _escape_latex(v, skip or k in _NO_ESCAPE_KEYS) for k, v in data.items()}
+    if isinstance(data, list):
+        return [_escape_latex(item, skip) for item in data]
+    if isinstance(data, str) and not skip:
+        return _LATEX_RE.sub(lambda m: _LATEX_MAP[m.group()], data)
+    return data
 
 
 class RendererError(Exception):
@@ -68,7 +103,8 @@ class Renderer:
         except Exception as e:
             raise RendererError(f"No se pudo cargar la plantilla '{name}' en {self.template_dir}: {e}")
         try:
-            return template.render(**self._preprocess(data))
+            # Escapar especiales de LaTeX DESPUÉS del preprocess (sobre el handle ya recortado).
+            return template.render(**_escape_latex(self._preprocess(data)))
         except Exception as e:
             raise RendererError(f"Error renderizando '{name}': {e}")
 
